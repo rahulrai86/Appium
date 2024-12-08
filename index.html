@@ -562,7 +562,7 @@
     </div>
 
     <!-- Inquiry Button -->
-    <div class="inquiry-button" onclick="window.location.href='inquery.html';">
+    <div class="inquiry-button" onclick="window.location.href='query.html';">
       <i class="fas fa-question-circle"></i>
     </div>
 
@@ -669,7 +669,7 @@
           const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
           // Step 2: Redirect to the About page after successful login
-          window.location.href = 'about.html'; // This will redirect to the about page after successful login
+          window.location.href = 'popular.html'; // This will redirect to the about page after successful login
 
         } catch (error) {
           alert(error.message); // Handle login errors
