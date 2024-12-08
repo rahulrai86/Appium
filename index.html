@@ -1,720 +1,720 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>Login & Sign-Up</title>
-<link
-href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
-rel="stylesheet"
-/>
-<link
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-rel="stylesheet"
-/>
-<style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
-
-body {
-font-family: 'Roboto', sans-serif;
-background: url('https://i0.wp.com/picjumbo.com/wp-content/uploads/3d-polygon-abstract-background-free-photo.jpeg?w=2210&quality=70') no-repeat center center fixed;
-color: #fff;
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
-margin: 0;
-overflow: hidden;
-flex-direction: row;
-}
-
-/* Left section (reviews) */
-.left-section {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 40%;
-padding: 20px;
-height: 100%;
-overflow-y: auto;
-color: #fff;
-border-radius: 15px;
-margin-right: 20px;
-}
-
-/* Base style for reviews */
-.review {
-display: flex;
-align-items: center;
-background-color: rgba(255, 255, 255, 0.1);
-padding: 15px;
-border-radius: 10px;
-margin-bottom: 20px;
-width: 100%;
-opacity: 0; /* Start with invisible */
-transition: opacity 0.3s ease;
-}
-
-/* Zig-zag effect */
-.review:nth-child(odd) {
-flex-direction: row-reverse; /* Reverse the order of elements for odd reviews */
-}
-
-.review img {
-width: 70px;
-height: 70px;
-border-radius: 50%;
-margin-right: 15px;
-}
-
-.review .review-content {
-flex: 1;
-}
-
-.review .review-content p {
-font-size: 16px;
-color: #ddd;
-}
-
-.review .review-content .stars {
-color: #ff6ec7;
-}
-
-.review .review-content .username {
-font-size: 18px;
-color: #ff6ec7;
-font-weight: bold;
-}
-
-/* Keyframes for each review animation */
-@keyframes slideLeftToRight {
-0% {
-transform: translateX(-100%);
-opacity: 0;
-}
-100% {
-transform: translateX(0);
-opacity: 1;
-}
-}
-
-@keyframes slideBottomToTop {
-0% {
-transform: translateY(100%);
-opacity: 0;
-}
-100% {
-transform: translateY(0);
-opacity: 1;
-}
-}
-
-@keyframes slideTopToBottom {
-0% {
-transform: translateY(-100%);
-opacity: 0;
-}
-100% {
-transform: translateY(0);
-opacity: 1;
-}
-}
-
-@keyframes slideRightToLeft {
-0% {
-transform: translateX(100%);
-opacity: 0;
-}
-100% {
-transform: translateX(0);
-opacity: 1;
-}
-}
-
-/* Apply animations to each review with different durations */
-.review:nth-child(1) {
-animation: slideLeftToRight 1s forwards;
-}
-
-.review:nth-child(2) {
-animation: slideBottomToTop 1s forwards;
-}
-
-.review:nth-child(3) {
-animation: slideTopToBottom 1s forwards;
-}
-
-.review:nth-child(4) {
-animation: slideRightToLeft 1s forwards;
-}
-
-/* Container (Login/Sign-Up) */
-.container {
-display: flex;
-justify-content: center;
-align-items: center;
-height: 530px; /* Set a fixed height for the container */
-width: 360px;
-flex-direction: column;
-margin-bottom: 90px;
-margin-top: 40px;
-}
-
-.flip-card-wrapper {
-width: 100%;
-height: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
-position: relative;
-transform-style: preserve-3d;
-transition: transform 0.6s;
-perspective: 1000px;
-}
-
-.card {
-background-color: rgba(0, 0, 0, 0.7);
-padding: 40px;
-width: 100%;
-height: 100%;
-border-radius: 15px;
-box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
-position: absolute;
-top: 0;
-left: 0;
-transform-style: preserve-3d;
-backface-visibility: hidden;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-}
-
-.card h2 {
-font-size: 32px;
-text-align: center;
-color: #fff;
-margin-bottom: 20px;
-}
-
-.card p {
-text-align: center;
-color: #aaa;
-font-size: 16px;
-margin-bottom: 20px;
-}
-
-.input-group {
-margin-bottom: 25px;
-position: relative;
-}
-
-/* Increase the size of input fields */
-.input-group input {
-width: 100%;
-padding: 18px; /* Increased padding */
-background: #333;
-border: 2px solid #444;
-border-radius: 8px;
-color: #fff;
-font-size: 18px; /* Increased font size */
-outline: none;
-transition: all 0.3s ease-in-out;
-}
-
-.input-group input:focus {
-border-color: #ff6ec7;
-box-shadow: 0 0 8px rgba(255, 110, 199, 0.6);
-}
-
-.input-group label {
-position: absolute;
-top: -8px;
-left: 10px;
-font-size: 14px;
-color: #aaa;
-background-color: #222;
-padding: 0 5px;
-transition: all 0.3s ease-in-out;
-}
-
-.input-group input:focus + label,
-.input-group input:valid + label {
-top: -18px;
-left: 10px;
-color: #ff6ec7;
-}
-
-button {
-width: 100%;
-padding: 15px;
-background-color: #ff6ec7;
-color: #fff;
-font-size: 18px;
-border: none;
-border-radius: 8px;
-cursor: pointer;
-transition: all 0.3s ease-in-out;
-}
-
-button:hover {
-background-color: #ff3b8b;
-transform: translateY(-5px);
-}
-
-.social-buttons {
-display: flex;
-justify-content: center;
-gap: 10px;
-margin-top: 20px;
-margin-bottom: 25px; /* Added space between buttons and link */
-}
-
-.social-button {
-background-color: #222;
-padding: 12px;
-border-radius: 8px;
-color: #fff;
-font-size: 20px;
-cursor: pointer;
-transition: all 0.3s ease-in-out;
-}
-
-.social-button:hover {
-background-color: #ff6ec7;
-transform: translateY(-5px);
-}
-
-.hidden {
-visibility: hidden;
-opacity: 0;
-}
-
-.toggle-form a {
-color: #ff6ec7;
-text-decoration: none;
-cursor: pointer;
-}
-
-.flip-card-wrapper.flip {
-transform: rotateY(180deg);
-}
-
-.card-back {
-transform: rotateY(180deg);
-}
-
-@media (max-width: 768px) {
-.flip-card-wrapper {
-width: 85%;
-}
-
-.container {
-width: 100%;
-}
-}
-
-footer {
-background-color: #222;
-padding: 20px 0;
-text-align: center;
-position: absolute;
-bottom: 0;
-width: 100%;
-color: #aaa;
-font-size: 14px;
-}
-
-footer a {
-color: #ff6ec7;
-text-decoration: none;
-}
-
-footer a:hover {
-text-decoration: underline;
-}
-
-/* Inquiry Button Styling */
-.inquiry-button {
-position: fixed;
-bottom: 20px;
-right: 20px;
-background-color: #ff6ec7;
-color: white;
-padding: 15px;
-border-radius: 50%;
-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-font-size: 24px;
-display: flex;
-justify-content: center;
-align-items: center;
-cursor: pointer;
-z-index: 999;
-transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.inquiry-button:hover {
-transform: scale(1.1);
-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-.inquiry-button i {
-transition: transform 0.3s ease;
-}
-
-.inquiry-button:hover i {
-transform: rotate(20deg);
-}
-
-/* Doggy Wiggle Animation */
-@keyframes wiggle {
-0% { transform: rotate(0deg); }
-25% { transform: rotate(-5deg); }
-50% { transform: rotate(5deg); }
-75% { transform: rotate(-5deg); }
-100% { transform: rotate(0deg); }
-}
-
-/* Shake animation */
-@keyframes shake {
-0% { transform: translateX(0); }
-25% { transform: translateX(-10px); }
-50% { transform: translateX(10px); }
-75% { transform: translateX(-10px); }
-100% { transform: translateX(0); }
-}
-
-/* Add wiggle and shake classes to trigger animations */
-.wiggle {
-animation: wiggle 0.6s ease;
-}
-
-.shake {
-animation: shake 0.6s ease;
-}
-
-/* Message Styling */
-.inquiry-message {
-position: fixed;
-bottom: 80px; /* Slightly above the button */
-right: 20px;
-background-color: #ff6ec7;
-color: white;
-padding: 10px;
-border-radius: 8px;
-font-size: 16px;
-display: none;
-z-index: 998;
-animation: fadeInOut 3s forwards;
-}
-
-@keyframes fadeInOut {
-0% { opacity: 0; }
-50% { opacity: 1; }
-100% { opacity: 0; }
-}
-
-.header-container {
-background-color: rgba(0, 0, 0, 0.5); /* Black transparent background */
-color: #orange; /* White text color */
-border-radius: 50px; /* Rounded corners */
-width: 400px; /* Set width */
-padding: 15px; /* Padding around the text */
-position: absolute; /* Positioning */
-top: 30px; /* Distance from the top */
-left: -20px; /* Optional, adjust as per your design */
-text-align: center; /* Center align the text */
-font-size: 18px; /* Font size */
-overflow: hidden; /* Prevent text overflow */
-white-space: nowrap; /* Prevent wrapping text */
-box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.6); /* Horizontal and vertical shadow, blur radius, and color */
-}
-</style>
-</head>
-<body>
-<!-- Left Section (Review Cards) -->
-<div class="left-section">
-<div class="review">
-<img src="https://randomuser.me/api/portraits/men/32.jpg" alt="user" />
-<div class="review-content">
-<p>
-"This platform has changed the way I work. The experience is
-amazing!"
-</p>
-<div class="username">John Doe</div>
-<!-- Added username -->
-<div class="stars">★★★★☆</div>
-</div>
-</div>
-<div class="header-container">Rahul Automation Classes !!</div>
-<div class="review">
-<img
-src="https://randomuser.me/api/portraits/women/43.jpg"
-alt="user"
-/>
-<div class="review-content">
-<p>
-"Such a seamless and easy-to-use service. I love how fast it works!"
-</p>
-<div class="username">Jane Smith</div>
-<!-- Added username -->
-<div class="stars">★★★★★</div>
-</div>
-</div>
-<!-- New review added -->
-<div class="review">
-<img src="https://randomuser.me/api/portraits/men/45.jpg" alt="user" />
-<div class="review-content">
-<p>
-"An absolutely amazing experience. The customer service is
-top-notch!"
-</p>
-<div class="username">Mike Johnson</div>
-<!-- Added username -->
-<div class="stars">★★★★★</div>
-</div>
-</div>
-</div>
-
-<!-- Right Section (Login/Signup Form) -->
-<div class="container">
-<div class="flip-card-wrapper">
-<div class="card" id="card-front">
-<h2>Sign-Up</h2>
-<form id="signUpForm">
-<div class="input-group">
-<input type="text" id="username" required />
-<label for="username">Username</label>
-</div>
-<div class="input-group">
-<input type="email" id="Email" required />
-<label for="Email">Email</label>
-</div>
-<div class="input-group">
-<input type="password" id="Pass" required />
-<label for="Pass">Password</label>
-</div>
-<div class="input-group">
-<button id="submitBtn">Sign Up</button>
-</div>
-<div id="errorMessage" style="display: none; color: red;"></div>
-<div id="successMessage" style="display: none; color: green;"></div>
-</form>
-<!-- Social Media Icons -->
-<div class="social-buttons">
-<button class="social-button">
-<i class="fab fa-facebook-f"></i>
-</button>
-<button class="social-button">
-<i class="fab fa-telegram"></i>
-</button>
-<button class="social-button">
-<i class="fab fa-youtube"></i>
-</button>
-</div>
-<div class="toggle-form">
-<p>
-Already have an account? <a href="#" id="toggleLogin">Login</a>
-</p>
-</div>
-</div>
-<div class="card card-back" id="card-back">
-<h2>Login</h2>
-<form id="loginForm">
-<div class="input-group">
-<input type="email" id="loginEmail" required />
-<label for="loginEmail">Email</label>
-</div>
-<div class="input-group">
-<input type="password" id="loginPass" required />
-<label for="loginPass">Password</label>
-</div>
-<div class="input-group">
-<button id="loginBtn">Login</button>
-</div>
-<div id="loginError" style="display: none; color: red;"></div>
-</form>
-<!-- Social Media Icons -->
-<div class="social-buttons">
-<button class="social-button">
-<i class="fab fa-facebook-f"></i>
-</button>
-<button class="social-button">
-<i class="fab fa-telegram"></i>
-</button>
-<button class="social-button">
-<i class="fab fa-youtube"></i>
-</button>
-</div>
-<div class="toggle-form">
-<p>
-Don't have an account? <a href="#" id="toggleSignUp">Sign Up</a>
-</p>
-</div>
-</div>
-</div>
-</div>
-
-<!-- Inquiry Button -->
-<div class="inquiry-button" onclick="window.location.href='inquery.html';">
-<i class="fas fa-question-circle"></i>
-</div>
-
-<!-- Inquiry Message -->
-<div class="inquiry-message" id="inquiryMessage">Inquiry</div>
-
-<!-- Footer -->
-<footer>
-<p>
-&copy; 2007 Rahul-Automation-Classes. All Rights Reserved. |
-<a href="#">Privacy Policy</a>
-</p>
-</footer>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
-
-// Firebase configuration
-const firebaseConfig = {
-apiKey: "AIzaSyDxQJaEO2Ymbi6Tm5dMU3ua63xZcXSsrmQ",
-authDomain: "appium-automation-8c6d1.firebaseapp.com",
-projectId: "appium-automation-8c6d1",
-storageBucket: "appium-automation-8c6d1.firebasestorage.app",
-messagingSenderId: "935809559227",
-appId: "1:935809559227:web:1880b574e3ff0ecad1579e",
-measurementId: "G-J4CT0HJGDY"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-// Handle Sign-Up Form Submission
-document.getElementById('submitBtn').addEventListener('click', async (event) => {
-event.preventDefault();
-
-const userName = document.getElementById('username').value.trim();
-const mail = document.getElementById('Email').value.trim();
-const Password = document.getElementById('Pass').value.trim();
-
-if (!userName || !mail || !Password) {
-document.getElementById('errorMessage').textContent = 'Please fill in all fields.';
-document.getElementById('errorMessage').style.display = 'block';
-return;
-}
-
-// Password validation
-if (Password.length < 6) {
-document.getElementById('errorMessage').textContent = 'Password must be at least 6 characters long.';
-document.getElementById('errorMessage').style.display = 'block';
-return;
-}
-
-try {
-// Step 1: Create user with Firebase Authentication
-const userCredential = await createUserWithEmailAndPassword(auth, mail, Password);
-const user = userCredential.user;
-
-// Step 2: Store additional user data in Firestore
-await setDoc(doc(db, "users", user.uid), {
-userName: userName,
-mail: mail,
-createdAt: new Date(),
-});
-
-// Success
-document.getElementById('successMessage').textContent = 'Registration successful!';
-setTimeout(() => {
-document.querySelector('.flip-card-wrapper').classList.add('flip'); // Flip the card to show login form
-}, 1500); // Flip the card after a short delay to allow the user to see the success message
-
-} catch (error) {
-document.getElementById('errorMessage').textContent = error.message;
-document.getElementById('errorMessage').style.display = 'block';
-}
-});
-
-// Toggle between Sign-Up and Login forms
-document.getElementById('toggleLogin').addEventListener('click', () => {
-document.querySelector('.flip-card-wrapper').classList.add('flip');
-resetLoginForm();
-});
-
-document.getElementById('toggleSignUp').addEventListener('click', () => {
-document.querySelector('.flip-card-wrapper').classList.remove('flip');
-resetSignUpForm();
-});
-
-// Login button event listener
-document.getElementById('loginBtn').addEventListener('click', async function () {
-const email = document.getElementById('loginEmail').value.trim();
-const password = document.getElementById('loginPass').value.trim();
-
-if (!email || !password) {
-alert('Please enter both email and password.');
-return;
-}
-
-try {
-// Step 1: Sign in with Firebase Authentication
-const userCredential = await signInWithEmailAndPassword(auth, email, password);
-
-// Step 2: Redirect to the About page after successful login
-window.location.href = 'about.html'; // This will redirect to the about page after successful login
-
-} catch (error) {
-alert(error.message); // Handle login errors
-}
-});
-
-// Reset the login form fields
-function resetLoginForm() {
-document.getElementById('loginEmail').value = '';
-document.getElementById('loginPass').value = '';
-}
-
-// Reset the sign-up form fields
-function resetSignUpForm() {
-document.getElementById('username').value = '';
-document.getElementById('Email').value = '';
-document.getElementById('Pass').value = '';
-}
-
-// Inquiry button animation function
-function triggerAnimations() {
-const button = document.querySelector('.inquiry-button');
-const message = document.getElementById('inquiryMessage');
-
-// Trigger the wiggle and shake animations
-button.classList.add('wiggle');
-button.classList.add('shake');
-
-// Show the inquiry message
-message.style.display = 'block';
-
-// Remove the shake and wiggle classes after animation completes
-setTimeout(() => {
-button.classList.remove('wiggle');
-button.classList.remove('shake');
-}, 600); // Duration of the animation (600ms)
-
-// Hide the message after 3 seconds
-setTimeout(() => {
-message.style.display = 'none';
-}, 3000); // Message disappears after 3 seconds
-}
-
-// Trigger the animations every 8 seconds
-setInterval(triggerAnimations, 8000); // Trigger every 8 seconds
-</script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Login & Sign-Up</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+
+            body {
+              font-family: 'Roboto', sans-serif;
+              background: url('https://i0.wp.com/picjumbo.com/wp-content/uploads/3d-polygon-abstract-background-free-photo.jpeg?w=2210&quality=70') no-repeat center center fixed;
+              color: #fff;
+              height: 100vh;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin: 0;
+              overflow: hidden;
+              flex-direction: row;
+            }
+
+            /* Left section (reviews) */
+            .left-section {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              width: 40%;
+              padding: 20px;
+              height: 100%;
+              overflow-y: auto;
+              color: #fff;
+              border-radius: 15px;
+              margin-right: 20px;
+            }
+
+            /* Base style for reviews */
+            .review {
+              display: flex;
+              align-items: center;
+              background-color: rgba(255, 255, 255, 0.1);
+              padding: 15px;
+              border-radius: 10px;
+              margin-bottom: 20px;
+              width: 100%;
+              opacity: 0; /* Start with invisible */
+              transition: opacity 0.3s ease;
+            }
+
+            /* Zig-zag effect */
+            .review:nth-child(odd) {
+              flex-direction: row-reverse; /* Reverse the order of elements for odd reviews */
+            }
+
+            .review img {
+              width: 70px;
+              height: 70px;
+              border-radius: 50%;
+              margin-right: 15px;
+            }
+
+            .review .review-content {
+              flex: 1;
+            }
+
+            .review .review-content p {
+              font-size: 16px;
+              color: #ddd;
+            }
+
+            .review .review-content .stars {
+              color: #ff6ec7;
+            }
+
+            .review .review-content .username {
+              font-size: 18px;
+              color: #ff6ec7;
+              font-weight: bold;
+            }
+
+            /* Keyframes for each review animation */
+            @keyframes slideLeftToRight {
+              0% {
+                transform: translateX(-100%);
+                opacity: 0;
+              }
+              100% {
+                transform: translateX(0);
+                opacity: 1;
+              }
+            }
+
+            @keyframes slideBottomToTop {
+              0% {
+                transform: translateY(100%);
+                opacity: 0;
+              }
+              100% {
+                transform: translateY(0);
+                opacity: 1;
+              }
+            }
+
+            @keyframes slideTopToBottom {
+              0% {
+                transform: translateY(-100%);
+                opacity: 0;
+              }
+              100% {
+                transform: translateY(0);
+                opacity: 1;
+              }
+            }
+
+            @keyframes slideRightToLeft {
+              0% {
+                transform: translateX(100%);
+                opacity: 0;
+              }
+              100% {
+                transform: translateX(0);
+                opacity: 1;
+              }
+            }
+
+            /* Apply animations to each review with different durations */
+            .review:nth-child(1) {
+              animation: slideLeftToRight 1s forwards;
+            }
+
+            .review:nth-child(2) {
+              animation: slideBottomToTop 1s forwards;
+            }
+
+            .review:nth-child(3) {
+              animation: slideTopToBottom 1s forwards;
+            }
+
+            .review:nth-child(4) {
+              animation: slideRightToLeft 1s forwards;
+            }
+
+            /* Container (Login/Sign-Up) */
+            .container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 530px; /* Set a fixed height for the container */
+              width: 360px;
+              flex-direction: column;
+              margin-bottom: 90px;
+              margin-top: 40px;
+            }
+
+            .flip-card-wrapper {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: relative;
+              transform-style: preserve-3d;
+              transition: transform 0.6s;
+              perspective: 1000px;
+            }
+
+            .card {
+              background-color: rgba(0, 0, 0, 0.7);
+              padding: 40px;
+              width: 100%;
+              height: 100%;
+              border-radius: 15px;
+              box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
+              position: absolute;
+              top: 0;
+              left: 0;
+              transform-style: preserve-3d;
+              backface-visibility: hidden;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            }
+
+            .card h2 {
+              font-size: 32px;
+              text-align: center;
+              color: #fff;
+              margin-bottom: 20px;
+            }
+
+            .card p {
+              text-align: center;
+              color: #aaa;
+              font-size: 16px;
+              margin-bottom: 20px;
+            }
+
+            .input-group {
+              margin-bottom: 25px;
+              position: relative;
+            }
+
+            /* Increase the size of input fields */
+            .input-group input {
+              width: 100%;
+              padding: 18px; /* Increased padding */
+              background: #333;
+              border: 2px solid #444;
+              border-radius: 8px;
+              color: #fff;
+              font-size: 18px; /* Increased font size */
+              outline: none;
+              transition: all 0.3s ease-in-out;
+            }
+
+            .input-group input:focus {
+              border-color: #ff6ec7;
+              box-shadow: 0 0 8px rgba(255, 110, 199, 0.6);
+            }
+
+            .input-group label {
+              position: absolute;
+              top: -8px;
+              left: 10px;
+              font-size: 14px;
+              color: #aaa;
+              background-color: #222;
+              padding: 0 5px;
+              transition: all 0.3s ease-in-out;
+            }
+
+            .input-group input:focus + label,
+            .input-group input:valid + label {
+              top: -18px;
+              left: 10px;
+              color: #ff6ec7;
+            }
+
+            button {
+              width: 100%;
+              padding: 15px;
+              background-color: #ff6ec7;
+              color: #fff;
+              font-size: 18px;
+              border: none;
+              border-radius: 8px;
+              cursor: pointer;
+              transition: all 0.3s ease-in-out;
+            }
+
+            button:hover {
+              background-color: #ff3b8b;
+              transform: translateY(-5px);
+            }
+
+            .social-buttons {
+              display: flex;
+              justify-content: center;
+              gap: 10px;
+              margin-top: 20px;
+              margin-bottom: 25px; /* Added space between buttons and link */
+            }
+
+            .social-button {
+              background-color: #222;
+              padding: 12px;
+              border-radius: 8px;
+              color: #fff;
+              font-size: 20px;
+              cursor: pointer;
+              transition: all 0.3s ease-in-out;
+            }
+
+            .social-button:hover {
+              background-color: #ff6ec7;
+              transform: translateY(-5px);
+            }
+
+            .hidden {
+              visibility: hidden;
+              opacity: 0;
+            }
+
+            .toggle-form a {
+              color: #ff6ec7;
+              text-decoration: none;
+              cursor: pointer;
+            }
+
+            .flip-card-wrapper.flip {
+              transform: rotateY(180deg);
+            }
+
+            .card-back {
+              transform: rotateY(180deg);
+            }
+
+            @media (max-width: 768px) {
+              .flip-card-wrapper {
+                width: 85%;
+              }
+
+              .container {
+                width: 100%;
+              }
+            }
+
+            footer {
+              background-color: #222;
+              padding: 20px 0;
+              text-align: center;
+              position: absolute;
+              bottom: 0;
+              width: 100%;
+              color: #aaa;
+              font-size: 14px;
+            }
+
+            footer a {
+              color: #ff6ec7;
+              text-decoration: none;
+            }
+
+            footer a:hover {
+              text-decoration: underline;
+            }
+
+        /* Inquiry Button Styling */
+        .inquiry-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff6ec7;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 999;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .inquiry-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .inquiry-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .inquiry-button:hover i {
+            transform: rotate(20deg);
+        }
+
+        /* Doggy Wiggle Animation */
+        @keyframes wiggle {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* Shake animation */
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Add wiggle and shake classes to trigger animations */
+        .wiggle {
+            animation: wiggle 0.6s ease;
+        }
+
+        .shake {
+            animation: shake 0.6s ease;
+        }
+
+        /* Message Styling */
+        .inquiry-message {
+            position: fixed;
+            bottom: 80px; /* Slightly above the button */
+            right: 20px;
+            background-color: #ff6ec7;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 16px;
+            display: none;
+            z-index: 998;
+            animation: fadeInOut 3s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+            .header-container {
+        background-color: rgba(0, 0, 0, 0.5);  /* Black transparent background */
+        color: #orange;  /* White text color */
+        border-radius: 50px;  /* Rounded corners */
+        width: 400px;  /* Set width */
+        padding: 15px;  /* Padding around the text */
+        position: absolute;  /* Positioning */
+        top: 30px;  /* Distance from the top */
+        left: -20px;  /* Optional, adjust as per your design */
+        text-align: center;  /* Center align the text */
+        font-size: 18px;  /* Font size */
+        overflow: hidden;  /* Prevent text overflow */
+        white-space: nowrap;  /* Prevent wrapping text */
+        box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.6);  /* Horizontal and vertical shadow, blur radius, and color */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Left Section (Review Cards) -->
+    <div class="left-section">
+      <div class="review">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="user" />
+        <div class="review-content">
+          <p>
+            "This platform has changed the way I work. The experience is
+            amazing!"
+          </p>
+          <div class="username">John Doe</div>
+          <!-- Added username -->
+          <div class="stars">★★★★☆</div>
+        </div>
+      </div>
+      <div class="header-container">Rahul Automation Classes !!</div>
+      <div class="review">
+        <img
+          src="https://randomuser.me/api/portraits/women/43.jpg"
+          alt="user"
+        />
+        <div class="review-content">
+          <p>
+            "Such a seamless and easy-to-use service. I love how fast it works!"
+          </p>
+          <div class="username">Jane Smith</div>
+          <!-- Added username -->
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <!-- New review added -->
+      <div class="review">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="user" />
+        <div class="review-content">
+          <p>
+            "An absolutely amazing experience. The customer service is
+            top-notch!"
+          </p>
+          <div class="username">Mike Johnson</div>
+          <!-- Added username -->
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section (Login/Signup Form) -->
+    <div class="container">
+      <div class="flip-card-wrapper">
+        <div class="card" id="card-front">
+          <h2>Sign-Up</h2>
+          <form id="signUpForm">
+            <div class="input-group">
+              <input type="text" id="username" required />
+              <label for="username">Username</label>
+            </div>
+            <div class="input-group">
+              <input type="email" id="Email" required />
+              <label for="Email">Email</label>
+            </div>
+            <div class="input-group">
+              <input type="password" id="Pass" required />
+              <label for="Pass">Password</label>
+            </div>
+            <div class="input-group">
+              <button id="submitBtn">Sign Up</button>
+            </div>
+            <div id="errorMessage" style="display: none; color: red;"></div>
+            <div id="successMessage" style="display: none; color: green;"></div>
+          </form>
+          <!-- Social Media Icons -->
+          <div class="social-buttons">
+            <button class="social-button">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="social-button">
+              <i class="fab fa-telegram"></i>
+            </button>
+            <button class="social-button">
+              <i class="fab fa-youtube"></i>
+            </button>
+          </div>
+          <div class="toggle-form">
+            <p>
+              Already have an account? <a href="#" id="toggleLogin">Login</a>
+            </p>
+          </div>
+        </div>
+        <div class="card card-back" id="card-back">
+          <h2>Login</h2>
+          <form id="loginForm">
+            <div class="input-group">
+              <input type="email" id="loginEmail" required />
+              <label for="loginEmail">Email</label>
+            </div>
+            <div class="input-group">
+              <input type="password" id="loginPass" required />
+              <label for="loginPass">Password</label>
+            </div>
+            <div class="input-group">
+              <button id="loginBtn">Login</button>
+            </div>
+            <div id="loginError" style="display: none; color: red;"></div>
+          </form>
+          <!-- Social Media Icons -->
+          <div class="social-buttons">
+            <button class="social-button">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="social-button">
+              <i class="fab fa-telegram"></i>
+            </button>
+            <button class="social-button">
+              <i class="fab fa-youtube"></i>
+            </button>
+          </div>
+          <div class="toggle-form">
+            <p>
+              Don't have an account? <a href="#" id="toggleSignUp">Sign Up</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inquiry Button -->
+    <div class="inquiry-button" onclick="window.location.href='inquery.html';">
+      <i class="fas fa-question-circle"></i>
+    </div>
+
+    <!-- Inquiry Message -->
+    <div class="inquiry-message" id="inquiryMessage">Inquiry</div>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        &copy; 2007 Rahul-Automation-Classes. All Rights Reserved. |
+        <a href="#">Privacy Policy</a>
+      </p>
+    </footer>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
+      import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
+
+      // Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDxQJaEO2Ymbi6Tm5dMU3ua63xZcXSsrmQ",
+        authDomain: "appium-automation-8c6d1.firebaseapp.com",
+        projectId: "appium-automation-8c6d1",
+        storageBucket: "appium-automation-8c6d1.firebasestorage.app",
+        messagingSenderId: "935809559227",
+        appId: "1:935809559227:web:1880b574e3ff0ecad1579e",
+        measurementId: "G-J4CT0HJGDY"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      // Handle Sign-Up Form Submission
+      document.getElementById('submitBtn').addEventListener('click', async (event) => {
+        event.preventDefault();
+
+        const userName = document.getElementById('username').value.trim();
+        const mail = document.getElementById('Email').value.trim();
+        const Password = document.getElementById('Pass').value.trim();
+
+        if (!userName || !mail || !Password) {
+          document.getElementById('errorMessage').textContent = 'Please fill in all fields.';
+          document.getElementById('errorMessage').style.display = 'block';
+          return;
+        }
+
+        // Password validation
+        if (Password.length < 6) {
+          document.getElementById('errorMessage').textContent = 'Password must be at least 6 characters long.';
+          document.getElementById('errorMessage').style.display = 'block';
+          return;
+        }
+
+        try {
+          // Step 1: Create user with Firebase Authentication
+          const userCredential = await createUserWithEmailAndPassword(auth, mail, Password);
+          const user = userCredential.user;
+
+          // Step 2: Store additional user data in Firestore
+          await setDoc(doc(db, "users", user.uid), {
+            userName: userName,
+            mail: mail,
+            createdAt: new Date(),
+          });
+
+          // Success
+          document.getElementById('successMessage').textContent = 'Registration successful!';
+          setTimeout(() => {
+            document.querySelector('.flip-card-wrapper').classList.add('flip'); // Flip the card to show login form
+          }, 1500); // Flip the card after a short delay to allow the user to see the success message
+
+        } catch (error) {
+          document.getElementById('errorMessage').textContent = error.message;
+          document.getElementById('errorMessage').style.display = 'block';
+        }
+      });
+
+      // Toggle between Sign-Up and Login forms
+      document.getElementById('toggleLogin').addEventListener('click', () => {
+        document.querySelector('.flip-card-wrapper').classList.add('flip');
+        resetLoginForm();
+      });
+
+      document.getElementById('toggleSignUp').addEventListener('click', () => {
+        document.querySelector('.flip-card-wrapper').classList.remove('flip');
+        resetSignUpForm();
+      });
+
+      // Login button event listener
+      document.getElementById('loginBtn').addEventListener('click', async function () {
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPass').value.trim();
+
+        if (!email || !password) {
+          alert('Please enter both email and password.');
+          return;
+        }
+
+        try {
+          // Step 1: Sign in with Firebase Authentication
+          const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+          // Step 2: Redirect to the About page after successful login
+          window.location.href = 'about.html'; // This will redirect to the about page after successful login
+
+        } catch (error) {
+          alert(error.message); // Handle login errors
+        }
+      });
+
+      // Reset the login form fields
+      function resetLoginForm() {
+        document.getElementById('loginEmail').value = '';
+        document.getElementById('loginPass').value = '';
+      }
+
+      // Reset the sign-up form fields
+      function resetSignUpForm() {
+        document.getElementById('username').value = '';
+        document.getElementById('Email').value = '';
+        document.getElementById('Pass').value = '';
+      }
+
+      // Inquiry button animation function
+      function triggerAnimations() {
+        const button = document.querySelector('.inquiry-button');
+        const message = document.getElementById('inquiryMessage');
+
+        // Trigger the wiggle and shake animations
+        button.classList.add('wiggle');
+        button.classList.add('shake');
+
+        // Show the inquiry message
+        message.style.display = 'block';
+
+        // Remove the shake and wiggle classes after animation completes
+        setTimeout(() => {
+          button.classList.remove('wiggle');
+          button.classList.remove('shake');
+        }, 600); // Duration of the animation (600ms)
+
+        // Hide the message after 3 seconds
+        setTimeout(() => {
+          message.style.display = 'none';
+        }, 3000); // Message disappears after 3 seconds
+      }
+
+      // Trigger the animations every 8 seconds
+      setInterval(triggerAnimations, 8000); // Trigger every 8 seconds
+    </script>
+  </body>
 </html>
