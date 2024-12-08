@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+                  * {
+                                              margin: 0;
+                                              padding: 0;
+                                              box-sizing: border-box;
+                                          }
+
+                                          /* Fixing the background to stay in place */
+                        html {
+                            height: 100%;
+                            overflow-x: hidden; /* Prevent horizontal scroll */
+                        }
+
+                        /* Body setup */
+                        body {
+                          font-family: 'Roboto', sans-serif;
+                          min-height: 100vh;
+                          display: flex;
+                          flex-direction: column;
+                          justify-content: space-between; /* This ensures space between header and footer */
+                          align-items: center;
+                          color: #fff;
+                          overflow-y: auto; /* Enable scrolling */
+                          padding: 20px 15px;
+                          position: relative;
+                        }
+
+                        /* Add a pseudo-element for the background */
+                        body::before {
+                          content: "";
+                          position: fixed;
+                          top: 0;
+                          left: 0;
+                          width: 100%;
+                          height: 100%;
+                          background: url('https://i0.wp.com/picjumbo.com/wp-content/uploads/3d-polygon-abstract-background-free-photo.jpeg?w=2210&quality=70') no-repeat center center;
+                          background-size: cover;
+                          z-index: -1;
+                        }
+
+                         /* Header Container */
+                                .header {
+                                    position: fixed;
+                                    top: 0px;
+                                    left: 0;
+                                    right: 0;
+                                    display: flex;
+                                    justify-content: flex-end; /* Align content to the right */
+                                    align-items: center;
+                                    gap: 20px;
+                                    padding: 10px 20px;
+                                    background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+                                    z-index: 10;
+                                }
+
+                                /* Main Content Area - Align everything between header and footer */
+                                main {
+                                    margin-top: 80px; /* Offset content below the header */
+                                    padding: 20px;
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                }
+
+                                /* Animated Neon Buttons */
+                                .button-container {
+                                    display: flex;
+                                    gap: 30px;
+                                }
+
+                                .animate-btn {
+                                    padding: 1px 20px;
+                                    font-size: 18px;
+                                    color: #fff;
+                                    background: transparent;
+                                    border: 2px solid #ff6ec7;
+                                    border-radius: 50px;
+                                    cursor: pointer;
+                                    position: relative;
+                                    overflow: hidden;
+                                    transition: all 0.3s ease;
+                                    font-weight: 500;
+                                    letter-spacing: 1px;
+                                    text-transform: uppercase;
+                                    box-shadow: 0 5px 20px rgba(255, 110, 199, 0.4);
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+
+                                .animate-btn:hover {
+                                    background: #ff6ec7;
+                                    color: #fff;
+                                    transform: scale(1.05);
+                                    box-shadow: 0 10px 30px rgba(255, 110, 199, 0.6), 0 0 20px rgba(255, 110, 199, 0.8);
+                                }
+
+                                .animate-btn:hover::before {
+                                    content: "";
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    width: 300%;
+                                    height: 300%;
+                                    background: rgba(255, 110, 199, 0.15);
+                                    border-radius: 50%;
+                                    transform: translate(-50%, -50%) scale(0);
+                                    animation: ripple 0.8s ease-out forwards;
+                                }
+
+                                @keyframes ripple {
+                                    to {
+                                        transform: translate(-50%, -50%) scale(1);
+                                        opacity: 0;
+                                    }
+                                }
+
+                                .animate-btn:active {
+                                    transform: scale(0.98) translateY(3px);
+                                    box-shadow: 0 5px 20px rgba(255, 110, 199, 0.4);
+                                }
+
+                                .animate-btn:hover {
+                                    text-shadow: 0 0 25px rgba(255, 110, 199, 0.8), 0 0 50px rgba(255, 110, 199, 0.6);
+                                }
+
+                                .animate-btn {
+                                    animation: fadeIn 1s ease-out;
+                                }
+
+                                @keyframes fadeIn {
+                                    0% {
+                                        opacity: 0;
+                                        transform: translateY(10px);
+                                    }
+                                    100% {
+                                        opacity: 1;
+                                        transform: translateY(0);
+                                    }
+                                }
+
+                                /* Profile Logo */
+                                .profile-logo {
+                                    width: 32px;
+                                    height: 28px;
+                                    background-color: #fff;
+                                    border-radius: 50%;
+                                    overflow: hidden;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    cursor: pointer;
+                                }
+
+                                .profile-logo img {
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                }
+
+                                /* Name text container */
+            .profile-name {
+              position: fixed;
+              top: 40px;  /* Position name below the profile icon */
+              right: 23px; /* Align to the same right as the profile icon */
+              font-size: 12px;
+              font-weight: bold;
+              color: white;
+              text-align: center;
+              display: block;
+            }
+
+            /* Dropdown menu (hidden by default) */
+      .dropdown-menu {
+        position: absolute;
+        top: 50px;  /* Position below the profile icon */
+        right: 5px;
+        background: white;
+        border-radius: 5px;
+        display: none;  /* Hidden by default */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+      }
+
+      .dropdown-menu ul {
+        list-style-type: none;
+        padding: 10px 0;
+        margin: 0;
+      }
+
+      .dropdown-menu li {
+        padding: 8px 20px;
+        cursor: pointer;
+      }
+
+      .dropdown-menu li:hover {
+        background-color: #ff6ec7;
+      }
+
+
+                                          /* Footer Section */
+                                          /* Footer Section */
+                        footer {
+                          width: 100%;
+                          background-color: rgba(0, 0, 0, 0.8);
+                          color: #fff;
+                          text-align: center;
+                          padding: 15px;
+                          position: fixed;
+                          bottom: 0;
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: center;
+                          padding: 5px 20px;
+                          height: 65px;
+                        }
+                                          .social-buttons {
+                                              display: flex;
+                                              justify-content: center;
+                                              gap: 10px;
+                                          }
+
+                                          .social-button {
+                                              background-color: #222;
+                                              padding: 12px;
+                                              border-radius: 8px;
+                                              color: #fff;
+                                              font-size: 20px;
+                                              cursor: pointer;
+                                              transition: all 0.3s ease-in-out;
+                                          }
+
+                                          .social-button:hover {
+                                              background-color: #ff6ec7;
+                                              transform: translateY(-5px);
+                                          }
+
+                                          footer p {
+                                              color: #fff;
+                                          }
+
+                                          footer a {
+                                              color: #ff6ec7;
+                                              text-decoration: none;
+                                          }
+
+                                          /* Card Styles */
+                                          .card-container {
+                                              display: grid;
+                                              grid-template-columns: repeat(6, 1fr); /* 6 cards per row */
+                                              gap: 20px;
+                                              max-width: 1200px;
+                                              width: 100%;
+                                              padding-top: 50px; /* Give space for header */
+                                              padding-bottom: 120px; /* Give space for footer */
+                                          }
+
+                                          .card {
+                                              background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+                                              padding: 15px;
+                                              border-radius: 12px;
+                                              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                                              text-align: center;
+                                              transition: transform 0.3s ease, box-shadow 0.3s ease;
+                                          }
+
+                                          .card:hover {
+                                              transform: translateY(-8px);
+                                              box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+                                          }
+
+                                          .card i {
+                                              font-size: 40px;
+                                              color: #ff6ec7;
+                                              margin-bottom: 10px;
+                                          }
+
+                                          .card h3 {
+                                              font-size: 18px;
+                                              font-weight: 500;
+                                              margin-bottom: 8px;
+                                          }
+
+                                          .card p {
+                                              font-size: 13px;
+                                              color: #ddd; /* Lighter text for better contrast on dark background */
+                                              line-height: 1.5;
+                                          }
+
+                                          .card:hover h3 {
+                                              color: #ff6ec7;
+                                          }
+
+
+                                          /* Moving Neon Text Design */
+                                          .moving-text {
+                                            font-size: 60px;
+                                            font-weight: 700;
+                                            text-align: center;
+                                            margin-top:70px; /* Adjusted space from top */
+                                            color: #fff;
+                                            background: linear-gradient(135deg, #ff6ec7, #00c6ff, #00ff99, #ffcc00);
+                                            background-clip: text;
+                                            -webkit-background-clip: text;
+                                            animation: textGlow 3s ease infinite, slideUp 2s ease-out forwards;
+                                            letter-spacing: 3px;
+                                            text-transform: uppercase;
+                                            box-shadow: 0 0 20px rgba(255, 110, 199, 1), 0 0 30px rgba(0, 198, 255, 0.8);
+                                          }
+
+                                          @keyframes textGlow {
+                                            0% {
+                                              text-shadow: 0 0 10px rgba(255, 110, 199, 1), 0 0 20px rgba(255, 110, 199, 0.8);
+                                            }
+                                            50% {
+                                              text-shadow: 0 0 25px rgba(0, 198, 255, 1), 0 0 50px rgba(0, 198, 255, 0.8);
+                                            }
+                                            100% {
+                                              text-shadow: 0 0 10px rgba(255, 110, 199, 1), 0 0 20px rgba(255, 110, 199, 0.8);
+                                            }
+                                          }
+
+                                          /* Start Learning Section */
+                                    .learning-section-container {
+                                      text-align: center;
+                                      margin-top: -70px;
+                                      width: 100%;
+                                    }
+
+                                    .learning-section-container h1 {
+                                      font-size: 28px;
+                                      color: white;
+                                    }
+
+                                    .popular-courses-text {
+                                      font-size: 32px;
+                                      color: white;
+                                      margin-top: 10px;
+                                    }
+
+                        /* Courses Container */
+                              .categories-container {
+                                display: flex;
+                                justify-content: center;
+                                gap: 30px;
+                                margin-top: 10px;
+                                position: relative;
+                                padding-bottom: 20px;
+                                margin-bottom: 20px;
+                                margin-left: 25%; /* Optional: adjust space from the left */
+                                margin-right: -60%; /* Optional: adjust space from the right */
+                              }
+
+                        .course-item {
+                          font-size: 18px;
+                          font-weight: 500;
+                          text-transform: uppercase;
+                          cursor: pointer;
+                          color: #555;
+                          padding-bottom: 10px;
+                          transition: color 0.3s ease;
+                          color:white;
+                          width:190px
+
+                        }
+
+                        .course-item:hover {
+                          color: #ff6ec7;
+                        }
+
+                        /* RGB Line Style */
+                        .rgb-line-container {
+                          position: relative;
+                          bottom: 0;
+                          left: 0; /* Reset the left position */
+                          right: 0; /* Optional: Can be adjusted to create space from the right */
+                          width: 80%; /* Set width to less than 100% to reduce the overall width */
+                          height: 5px;
+                          background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+                          z-index: -1;
+                          transition: background 0.3s ease;
+                          margin-left: -50%; /* Optional: adjust space from the left */
+                          margin-right: 50%; /* Optional: adjust space from the right */
+                          margin-bottom: 0px;
+                          margin-top: 60px;
+                        }
+
+                              /* Active Category - Highlighted state */
+                              .course-item.active {
+                                color: #ff6ec7;
+                              }
+
+                        .cards-display-container {
+                          display: flex;
+                          flex-wrap: wrap;
+                          justify-content: center;
+                          gap: 20px;
+                          margin-top: 20px;
+                          margin-bottom: 50px;
+                          background-color: rgba(0, 0, 0, 0.5);
+                          overflow-x: hidden;  /* Ensure no horizontal scrolling */
+                        }
+
+                        .course-card {
+                          width: 250px;
+                          padding: 20px;
+                          background-color: rgba(0, 0, 0, 0.5);
+                          border-radius: 15px;
+                          color: #fff;
+                          text-align: center;
+                          font-size: 16px;
+                          transition: transform 0.3s ease, box-shadow 0.3s ease;
+                        }
+
+                        .course-card:hover {
+                          transform: translateY(-5px);
+                          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+                        }
+
+                        .course-title {
+                          font-size: 18px;
+                          font-weight: 600;
+                          color: #ff6ec7;
+                          margin-bottom: 10px;
+                        }
+
+                        .course-description {
+                          font-size: 14px;
+                          margin-bottom: 15px;
+                          color: #fff;
+                          line-height: 1.4;
+                        }
+
+                        .btn-read-more {
+                          background-color: #ff6ec7;
+                          color: white;
+                          padding: 8px 15px;
+                          border: none;
+                          border-radius: 5px;
+                          cursor: pointer;
+                          font-size: 14px;
+                        }
+
+                        .btn-read-more:hover {
+                          background-color: #e55ea3;
+                        }
+
+                        /* Modal Styles */
+                        .modal {
+                          display: none;
+                          position: fixed;
+                          z-index: 1;
+                          left: 0;
+                          top: 0;
+                          width: 100%;
+                          height: 100%;
+                          overflow: auto;
+                          background-color: rgba(0, 0, 0, 0.4);
+                          padding-top: 60px;
+                        }
+
+                        .modal-content {
+                          background-color: #fff;
+                          margin: 5% auto;
+                          padding: 20px;
+                          border-radius: 10px;
+                          width: 80%;
+                          max-width: 600px;
+                        }
+
+                        .modal-header {
+                          font-size: 24px;
+                          font-weight: bold;
+                          color: #333;
+                        }
+
+                        .modal-body {
+                          font-size: 16px;
+                          color: #555;
+                          margin-top: 10px;
+                        }
+
+                        .modal-footer {
+                          margin-top: 20px;
+                          text-align: right;
+                        }
+
+                        .btn-close {
+                          background-color: #ff6ec7;
+                          color: white;
+                          padding: 10px 20px;
+                          border: none;
+                          border-radius: 5px;
+                          cursor: pointer;
+                          font-size: 16px;
+                        }
+
+                        .btn-close:hover {
+                          background-color: #e55ea3;
+                        }
+
+                        .btn-subscribe {
+                          background-color: #4CAF50;
+                          color: white;
+                          padding: 12px 25px;
+                          border: none;
+                          border-radius: 5px;
+                          cursor: pointer;
+                          font-size: 16px;
+                          text-transform: uppercase;
+                        }
+
+                        .btn-subscribe:hover {
+                          background-color: #45a049;
+                        }
+
+                        .modal-body ul {
+                          list-style: none;
+                          padding-left: 0;
+                          font-size: 14px;
+                        }
+
+                        .modal-body li {
+                          margin-bottom: 8px;
+                        }
+
+                        /* Popup styles */
+      .popup {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        justify-content: center;
+        align-items: center;
+        z-index: 20;
+      }
+
+      .popup-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        width: 50%;
+        text-align: center;
+        color: #333;
+        position: relative; /* For positioning the close button */
+      }
+
+      .popup h2 {
+        margin-bottom: 20px;
+      }
+
+      .popup .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #333; /* Ensure it's visible */
+      }
+
+      .popup .close-btn:hover {
+        color: #ff6ec7;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Container with Profile Logo and Buttons -->
+    <div class="header">
+      <div class="button-container">
+        <button class="animate-btn" onclick="window.location.href = '#';">
+          Subscriptions
+        </button>
+        <button class="animate-btn" onclick="window.location.href = '#';">
+          Live Sessions
+        </button>
+        <button
+          class="animate-btn"
+          onclick="window.location.href = 'index.html';"
+        >
+          Back
+        </button>
+      </div>
+
+      <!-- Profile Section -->
+      <!-- Profile logo container -->
+      <div class="profile-logo" id="profileIcon">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
+          alt="Profile Icon"
+        />
+      </div>
+
+      <!-- Name text container -->
+      <span class="profile-name" id="profileName">Guest</span>
+    </div>
+
+    <!-- Dropdown menu (hidden by default) -->
+    <div class="dropdown-menu" id="dropdownMenu">
+      <ul>
+        <li><a href="#" id="viewProfileBtn">View Profile</a></li>
+        <li><a href="#" id="logoutBtn">Logout</a></li>
+      </ul>
+    </div>
+
+    <!-- Popup (initially hidden) -->
+    <div class="popup" id="profilePopup">
+      <div class="popup-content">
+        <!-- Close button -->
+        <span class="close-btn" id="closePopupBtn">&times;</span>
+
+        <!-- Popup content will be dynamically populated -->
+        <div id="popupContent"></div>
+      </div>
+    </div>
+
+    <!-- Moving Neon Text -->
+    <div class="moving-text">Code and Innovate Faster</div>
+
+    <!-- Card Container for Technologies -->
+    <div class="card-container">
+      <!-- Java Selenium Card -->
+      <div class="card">
+        <i class="fab fa-java"></i>
+        <h3>Java Selenium</h3>
+        <p>
+          Automated web testing using Java and Selenium WebDriver for
+          cross-browser testing.
+        </p>
+      </div>
+
+      <!-- Java Selenium Appium Card -->
+      <div class="card">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Java Selenium Appium</h3>
+        <p>
+          Automated mobile testing using Java, Selenium WebDriver, and Appium
+          for both Android and iOS.
+        </p>
+      </div>
+
+      <!-- Python Selenium Card -->
+      <div class="card">
+        <i class="fab fa-python"></i>
+        <h3>Python Selenium</h3>
+        <p>
+          Automated web testing using Python and Selenium WebDriver for various
+          browsers.
+        </p>
+      </div>
+
+      <!-- Python Selenium Appium Card -->
+      <div class="card">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Python Selenium Appium</h3>
+        <p>
+          Automated mobile testing using Python with Selenium WebDriver and
+          Appium for Android and iOS.
+        </p>
+      </div>
+
+      <!-- Appium Card -->
+      <div class="card">
+        <i class="fab fa-app-store-ios"></i>
+        <h3>Appium</h3>
+        <p>
+          Cross-platform mobile testing with Appium, enabling tests on both iOS
+          and Android.
+        </p>
+      </div>
+
+      <!-- Jenkins Card -->
+      <div class="card">
+        <i class="fab fa-jenkins"></i>
+        <h3>Jenkins</h3>
+        <p>
+          Automation server for continuous integration/continuous deployment
+          (CI/CD) in DevOps pipelines.
+        </p>
+      </div>
+
+      <!-- Git Card -->
+      <div class="card">
+        <i class="fab fa-git"></i>
+        <h3>Git</h3>
+        <p>
+          Version control system for tracking changes in source code during
+          software development.
+        </p>
+      </div>
+
+      <!-- Xcode Card -->
+      <div class="card">
+        <i class="fab fa-apple"></i>
+        <h3>Xcode</h3>
+        <p>
+          IDE for macOS used to develop iOS applications, integrated with Swift
+          and Objective-C.
+        </p>
+      </div>
+
+      <!-- Android Studio Card -->
+      <div class="card">
+        <i class="fab fa-android"></i>
+        <h3>Android Studio</h3>
+        <p>
+          The official IDE for Android development with powerful tools for
+          debugging and UI design.
+        </p>
+      </div>
+
+      <!-- Katalon Studio Card -->
+      <div class="card">
+        <i class="fas fa-cogs"></i>
+        <h3>Katalon Studio</h3>
+        <p>
+          Automation testing tool for web and mobile apps with built-in
+          reporting and integration features.
+        </p>
+      </div>
+
+      <!-- Manual Testing Card -->
+      <div class="card">
+        <i class="fas fa-check-circle"></i>
+        <h3>Manual Testing</h3>
+        <p>
+          Human-driven testing to ensure the functionality and usability of
+          software through real-time interaction.
+        </p>
+      </div>
+
+      <!-- Frameworks Card -->
+      <div class="card">
+        <i class="fas fa-cogs"></i>
+        <h3>Frameworks</h3>
+        <p>
+          Build and manage your testing or development process using powerful
+          frameworks like TestNG, JUnit, and others.
+        </p>
+      </div>
+    </div>
+
+    <div class="learning-section-container">
+      <!-- Start Learning Heading -->
+      <h1>Start Learning</h1>
+      <div class="popular-courses-text">Popular Courses</div>
+
+      <!-- Categories -->
+      <div class="categories-container">
+        <div class="course-item" onclick="showCards('new-to-coding')">
+          New to Coding
+        </div>
+        <div class="course-item" onclick="showCards('most-popular')">
+          Most Popular
+        </div>
+        <div class="course-item" onclick="showCards('skill-paths')">
+          Skill Paths
+        </div>
+        <div class="course-item" onclick="showCards('career-paths')">
+          Career Paths
+        </div>
+
+        <!-- RGB Line Under Categories -->
+        <!-- RGB Line under the courses -->
+        <div class="rgb-line-container"></div>
+      </div>
+
+      <!-- Cards Display Container -->
+      <div class="cards-display-container" id="cards-display-container">
+        <!-- Example course card -->
+        <div class="course-card">
+          <div class="course-title">Manual Testing</div>
+          <div class="course-description">
+            Learn the fundamentals of Manual Testing...
+          </div>
+          <button
+            class="btn-read-more"
+            onclick="showCourseDetails('manual-testing')"
+          >
+            Read More
+          </button>
+        </div>
+
+        <div class="course-card">
+          <div class="course-title">API Testing</div>
+          <div class="course-description">
+            This course covers the essential concepts of API testing...
+          </div>
+          <button
+            class="btn-read-more"
+            onclick="showCourseDetails('api-testing')"
+          >
+            Read More
+          </button>
+        </div>
+
+        <div class="course-card">
+          <div class="course-title">Test Cases & Reporting</div>
+          <div class="course-description">
+            Learn how to design effective test cases...
+          </div>
+          <button
+            class="btn-read-more"
+            onclick="showCourseDetails('test-cases')"
+          >
+            Read More
+          </button>
+        </div>
+
+        <div class="course-card">
+          <div class="course-title">Basics of Automation</div>
+          <div class="course-description">
+            Get introduced to the world of test automation...
+          </div>
+          <button
+            class="btn-read-more"
+            onclick="showCourseDetails('automation')"
+          >
+            Read More
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal (Popup) for Course Details -->
+    <div class="modal" id="courseModal">
+      <div class="modal-content">
+        <div class="modal-header" id="modal-header"></div>
+        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-footer">
+          <button class="btn-close" onclick="closeModal()">Close</button>
+          <button
+            class="btn-subscribe"
+            id="subscribeButton"
+            onclick="subscribeCourse()"
+          >
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Section with Social Media Icons -->
+    <footer>
+      <p>
+        &copy; 2024 YourCompany. All rights reserved. |
+        <a href="#">Privacy Policy</a>
+      </p>
+      <div class="social-buttons">
+        <button class="social-button">
+          <i class="fab fa-facebook-f"></i>
+        </button>
+        <button class="social-button">
+          <i class="fab fa-telegram"></i>
+        </button>
+        <button class="social-button">
+          <i class="fab fa-youtube"></i>
+        </button>
+      </div>
+    </footer>
+
+    <!-- Include Razorpay Checkout Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+      // Global variable to hold course fee
+      let courseFee = 0;
+
+      // Data for the courses in each category
+      const categories = {
+        'new-to-coding': [
+          {
+            id: 'manual-testing',
+            title: 'Manual Testing',
+            fee: 15000,
+            description: 'Learn the fundamentals of Manual Testing...',
+            learnings: [
+              'Basics of Manual Testing',
+              'Testing Techniques',
+              'Bug Reporting'
+            ]
+          },
+          {
+            id: 'api-testing',
+            title: 'API Testing',
+            fee: 21000,
+            description: 'This course covers the essential concepts of API testing...',
+            learnings: [
+              'Basics of APIs and Web Services',
+              'API Testing Tools (Postman, SoapUI)',
+              'Automation of API Testing'
+            ]
+          },
+          {
+            id: 'test-cases-reporting',
+            title: 'Test Cases & Reporting',
+            fee: 5000,
+            description: 'Learn how to design effective test cases...',
+            learnings: [
+              'Writing Effective Test Cases',
+              'Test Case Management Techniques',
+              'Handling Test Data',
+              'Generating Test Reports and Metrics'
+            ]
+          },
+          {
+            id: 'automation-basics',
+            title: 'Basics of Automation',
+            fee: 8000,
+            description: 'Get introduced to the world of test automation...',
+            learnings: [
+              'Introduction to Automation Tools',
+              'Selenium Basics',
+              'Writing First Automation Script'
+            ]
+          }
+        ],
+        'most-popular': [
+          {
+            id: 'java-selenium-appium',
+            title: 'Java Selenium Appium (Android / IOS)',
+            fee: 15000,
+            description: 'Automate mobile apps with Appium and Selenium',
+            learnings: [
+              'Introduction to Appium and Selenium',
+              'Mobile Automation Frameworks'
+            ]
+          },
+          {
+            id: 'java-selenium-web',
+            title: 'Java Selenium Web',
+            fee: 12000,
+            description: 'Automate web apps with Java and Selenium',
+            learnings: [
+              'Introduction to Selenium WebDriver',
+              'Building Automation Frameworks'
+            ]
+          },
+          {
+            id: 'api-automation',
+            title: 'API Automation',
+            fee: 13000,
+            description: 'Automate API testing with various tools',
+            learnings: [
+              'Basics of API Testing',
+              'Automating API Testing using Postman and RestAssured'
+            ]
+          },
+          {
+            id: 'framework-designing',
+            title: 'Framework Designing',
+            fee: 18000,
+            description: 'Learn how to design scalable and reusable test frameworks',
+            learnings: [
+              'Creating Scalable Frameworks',
+              'Design Patterns in Automation'
+            ]
+          }
+        ],
+        'skill-paths': [
+          {
+            id: 'appium',
+            title: 'Appium',
+            fee: 8000,
+            description: 'Learn how to use Appium for mobile test automation',
+            learnings: [
+              'Setting up Appium',
+              'Mobile automation with Appium'
+            ]
+          },
+          {
+            id: 'katalon-studio',
+            title: 'Katalon Studio',
+            fee: 7000,
+            description: 'Learn Katalon Studio for functional testing',
+            learnings: [
+              'Katalon Studio basics',
+              'Creating automation scripts'
+            ]
+          },
+          {
+            id: 'github',
+            title: 'GitHub',
+            fee: 6000,
+            description: 'Version control with Git and GitHub',
+            learnings: [
+              'Git Commands',
+              'Collaboration on GitHub'
+            ]
+          },
+          {
+            id: 'jenkins',
+            title: 'Jenkins',
+            fee: 9000,
+            description: 'Learn Jenkins for continuous integration and delivery',
+            learnings: [
+              'Jenkins Setup',
+              'Automating Builds and Deployments'
+            ]
+          },
+          {
+            id: 'android-studio',
+            title: 'Android Studio',
+            fee: 10000,
+            description: 'Learn Android development using Android Studio',
+            learnings: [
+              'Building Android Apps',
+              'UI Design and Development'
+            ]
+          },
+          {
+            id: 'xcode',
+            title: 'Xcode',
+            fee: 11000,
+            description: 'Develop iOS apps using Xcode',
+            learnings: [
+              'Building iOS Apps',
+              'Using Swift for iOS development'
+            ]
+          }
+        ],
+        'career-paths': [
+          {
+            id: 'basic-automation',
+            title: 'Basic Automation',
+            fee: 8000,
+            description: 'Learn the basics of test automation',
+            learnings: [
+              'Introduction to Automation',
+              'Selenium WebDriver Basics'
+            ]
+          },
+          {
+            id: 'advanced-automation',
+            title: 'Advanced Automation',
+            fee: 12000,
+            description: 'Learn advanced automation concepts and frameworks',
+            learnings: [
+              'Advanced Selenium concepts',
+              'Framework Designing'
+            ]
+          },
+          {
+            id: 'automation-support',
+            title: 'Automation Support',
+            fee: 5000,
+            description: 'Get introduced to automation support processes',
+            learnings: [
+              'Managing Test Scripts',
+              'Automation Tool Support'
+            ]
+          }
+        ]
+      };
+
+      // Show cards based on category selection
+      function showCards(category) {
+        const cardsContainer = document.getElementById("cards-display-container");
+        cardsContainer.style.display = "flex"; // Show the container
+
+        // Clear previous cards
+        cardsContainer.innerHTML = '';
+
+        // Loop through the selected category and create the course cards
+        categories[category].forEach(course => {
+          const card = document.createElement('div');
+          card.classList.add('course-card');
+          card.style = "border: 1px solid #ccc; padding: 20px; margin: 10px; width: 200px;";
+
+          card.innerHTML = `
+            <div class="course-title">${course.title}</div>
+            <div class="course-description">${course.description}</div>
+            <button class="btn-read-more" onclick="showCourseDetails('${course.id}')">Read More</button>
+          `;
+
+          cardsContainer.appendChild(card);
+        });
+      }
+
+      // Show course details in modal
+      function showCourseDetails(courseId) {
+        const modal = document.getElementById("courseModal");
+        const modalHeader = document.getElementById("modal-header");
+        const modalBody = document.getElementById("modal-body");
+
+        // Get the course details for the selected course
+        const course = getCourseDetails(courseId);
+
+        // Set the modal content
+        modalHeader.innerHTML = course.title;
+        modalBody.innerHTML = `
+          <strong>What You'll Learn:</strong>
+          <ul>
+            ${course.learnings.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+          <strong>Course Duration:</strong> 4 Weeks
+          <br><strong>Skill Level:</strong> Beginner
+          <br><strong>Fee:</strong> ₹${course.fee}/-
+        `;
+
+        // Set the fee
+        courseFee = course.fee;
+
+        // Show modal
+        modal.style.display = "block";
+      }
+
+      // Get course details based on courseId
+      function getCourseDetails(courseId) {
+        // Flatten all categories into one array
+        const allCourses = [].concat(...Object.values(categories));
+        return allCourses.find(course => course.id === courseId);
+      }
+
+      // Close modal
+      function closeModal() {
+        document.getElementById("courseModal").style.display = "none";
+      }
+
+      // Razorpay subscription function
+      function subscribeCourse() {
+        const options = {
+          key: "rzp_live_Gz1jFhEnnWRmTB", // Replace with your Razorpay API Key
+          amount: courseFee * 100, // Amount in paisa (1 INR = 100 paisa)
+          currency: "INR",
+          name: "Course Subscription",
+          description: "Subscribe for the selected course",
+          image: "https://www.your-logo.com/logo.png",
+          handler: function (response) {
+            alert("Payment successful! Order ID: " + response.razorpay_order_id);
+            closeModal(); // Close modal after successful payment
+          },
+          prefill: {
+            name: "Student Name",
+            email: "student@example.com",
+            contact: "9999999999"
+          },
+          theme: {
+            color: "#ff6ec7"
+          }
+        };
+
+        const rzp1 = new Razorpay(options);
+        rzp1.open();
+      }
+    </script>
+    
+    </script>
+    <script type="module">
+      // Import Firebase SDK
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
+      import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
+
+      // Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDxQJaEO2Ymbi6Tm5dMU3ua63xZcXSsrmQ",
+        authDomain: "appium-automation-8c6d1.firebaseapp.com",
+        projectId: "appium-automation-8c6d1",
+        storageBucket: "appium-automation-8c6d1.firebasestorage.app",
+        messagingSenderId: "935809559227",
+        appId: "1:935809559227:web:1880b574e3ff0ecad1579e",
+        measurementId: "G-J4CT0HJGDY"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      // Listen for authentication state changes (when page loads, check if the user is logged in)
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          // User is signed in, fetch user data from Firestore
+          const userDocRef = doc(db, "users", user.uid);
+          const userDoc = await getDoc(userDocRef);
+
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            const userName = `${userData.userName}`;  // Combine firstName and lastName
+
+            // Display the user's name under the profile logo
+            document.getElementById('profileName').textContent = `Welcome, ${userName}`;
+          }
+        } else {
+          // User is signed out, display "Guest"
+          document.getElementById('profileName').textContent = 'Guest';
+        }
+      });
+
+      // Toggle dropdown menu visibility when the profile icon is clicked
+      const profileIcon = document.getElementById('profileIcon');
+      const dropdownMenu = document.getElementById('dropdownMenu');
+
+      profileIcon.addEventListener('click', () => {
+        // Toggle visibility of the dropdown menu
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+      });
+
+      // Close the dropdown menu if the user clicks outside of the profile icon or the dropdown menu
+document.addEventListener('click', (event) => {
+    // Check if the click was outside of the profile icon or dropdown menu
+    if (!profileIcon.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        // Close the dropdown menu
+        dropdownMenu.style.display = 'none';
+    }
+});
+
+      // View Profile functionality
+      const viewProfileBtn = document.getElementById('viewProfileBtn');
+      const profilePopup = document.getElementById('profilePopup');
+      const popupContent = document.getElementById('popupContent');
+      const closePopupBtn = document.getElementById('closePopupBtn');
+
+      viewProfileBtn.addEventListener('click', async () => {
+        // Fetch user data from Firebase and display it in the popup
+        const user = auth.currentUser;
+        if (user) {
+          const userDocRef = doc(db, "users", user.uid);
+          const userDoc = await getDoc(userDocRef);
+
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            const userName = `${userData.userName}`;
+            const userEmail = userData.mail;
+            const userMobile = userData.mobile;
+
+            // Display the user data in the popup
+            popupContent.innerHTML = `
+              <h2>User Profile</h2>
+              <p><strong>Name:</strong> ${userName}</p>
+              <p><strong>Email:</strong> ${userEmail}</p>
+              <p><strong>Mobile:</strong> ${userMobile}</p>
+            `;
+            profilePopup.style.display = 'flex';  // Show the popup
+          }
+        }
+      });
+
+      // Close the popup when the user clicks the close button
+      closePopupBtn.addEventListener('click', () => {
+        profilePopup.style.display = 'none';  // Hide the popup
+      });
+      
+
+      // Logout functionality
+      const logoutBtn = document.getElementById('logoutBtn');
+      logoutBtn.addEventListener('click', () => {
+        signOut(auth).then(() => {
+          console.log("User logged out");
+          document.getElementById('profileName').textContent = 'Guest';
+          dropdownMenu.style.display = 'none';  // Close the dropdown after logging out
+          window.location.href = 'index.html';  // Redirect to index.html after logout
+        }).catch((error) => {
+          console.error("Error logging out:", error);
+        });
+      });
+    </script>
+  </body>
+</html>
