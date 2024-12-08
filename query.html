@@ -5,245 +5,268 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us</title>
     <style>
-                /* General Styles */
-                * {
-                    margin: 0;
-                    padding: 0;
-                    box-sizing: border-box;
-                }
-
-                body {
-                    font-family: 'Roboto', sans-serif;
-                    background: url('https://i0.wp.com/picjumbo.com/wp-content/uploads/3d-polygon-abstract-background-free-photo.jpeg?w=2210&quality=70') no-repeat center center fixed;
-                    background-size: cover;
-                    height: 100vh; /* Full screen height */
-                    display: flex;
-                    flex-direction: column; /* Flex column to align content and footer */
-                    justify-content: center;
-                    align-items: center;
-                    color: #fff;
-                    overflow: hidden;
-                    padding: 0 15px; /* For some space on small screens */
-                }
-
-                body::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: rgba(0, 0, 0, 0.5);
-                    z-index: 1;
-                }
-
-                .container {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    z-index: 2;
-                    width: 100%;
-                    position: relative;
-                    max-width: 1200px;
-                    gap: 0; /* Reduced the gap between form and image */
-                    height: 90%; /* Set a fixed height for better alignment */
-                }
-
-                .image-container {
-                    flex: 1;
-                    height: 100%; /* Image should occupy the full height of the container */
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding-right: 5px; /* Reduced padding to bring form closer to the image */
-                    position: relative;
-                }
-
-                /* Transparent Image Wrapper */
-                .image-wrapper {
-
-                    border-radius: 20px;
-                    overflow: hidden;
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-
-                .image-wrapper img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-
-                /* Contact Card */
-                .contact-card {
-                    background: rgba(0, 0, 0, 0.7);  /* Black transparent background */
-                    border-radius: 20px;
-                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-                    padding: 40px 35px;
-                    width: 450px;
-                    max-width: 90%;
-                    height: 100%; /* Form should occupy the full height of the container */
-                    max-height: 600px; /* Max height */
-                    overflow-y: auto; /* Scroll if content exceeds height */
-                    position: relative;
-                    backdrop-filter: blur(10px); /* Frosted glass effect */
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center; /* Center form content vertically */
-                }
-
-                /* Close Button */
-                .close-btn {
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    background-color: transparent;
-                    color: #ff6ec7; /* Theme color */
-                    border: none;
-                    font-size: 24px;
-                    cursor: pointer;
-                    transition: color 0.3s ease;
-                }
-
-                .close-btn:hover {
-                    color: #ff4b8f; /* Darker shade on hover */
-                }
-
-                .close-btn:focus {
-                    outline: none;
-                }
-
-                .contact-card h2 {
-                    font-size: 30px;
-                    text-align: center;
-                    color: #fff;
-                    margin-bottom: 20px;
-                    font-weight: 600;
-                }
-
-                /* Form Inputs */
-                .form-group {
-                    position: relative;
-                    margin-bottom: 25px;
-                }
-
-                label {
-                    position: absolute;
-                    left: 20px;
-                    top: 20px;
-                    font-size: 16px;
-                    color: #ddd;
-                    pointer-events: none;
-                    transition: 0.3s ease;
-                }
-
-                input, textarea {
-                    width: 100%;
-                    padding: 18px 20px;
-                    font-size: 16px;
-                    border: 2px solid #555;
-                    border-radius: 12px;
-                    outline: none;
-                    background-color: #333;
-                    color: #fff;
-                    transition: all 0.3s ease;
-                }
-
-                /* Theme Color (#ff6ec7) applied to input border and focus */
-                input:focus, textarea:focus {
-                    border-color: #ff6ec7;
-                    background-color: #444;
-                }
-
-                input:focus + label, textarea:focus + label,
-                input:not(:focus):valid + label, textarea:not(:focus):valid + label {
-                    top: -10px;
-                    left: 20px;
-                    font-size: 12px;
-                    color: #ff6ec7;
-                }
-
-                textarea {
-                    min-height: 150px;
-                    resize: vertical;
-                }
-
-                .submit-btn {
-                    background-color: #ff6ec7; /* Use theme color for the submit button */
-                    color: #fff;
-                    padding: 16px 25px;
-                    font-size: 18px;
-                    width: 100%;
-                    border: none;
-                    border-radius: 12px;
-                    cursor: pointer;
-                    transition: transform 0.3s ease, background-color 0.3s ease;
-                }
-
-                .submit-btn:hover {
-                    background-color: #ff4b8f; /* Darker shade of the theme color */
-                    transform: translateY(-3px);
-                }
-
-                .submit-btn:active {
-                    transform: translateY(1px);
-                }
-
-                .feedback {
-                    margin-top: 20px;
-                    font-size: 14px;
-                    color: #28a745;
-                    text-align: center;
-                }
-
-                .feedback.error {
-                    color: #dc3545;
-                }
-
-                /* Footer */
-                footer {
-                    width: 100%;
-                    background-color: rgba(0, 0, 0, 0.8);
-                    color: #fff;
-                    text-align: center;
-                    padding: 15px;
-                    position: absolute;
-                    bottom: 0;
-                }
-
-                footer a {
-                    color: #ff6ec7; /* Use theme color for footer link */
-                    text-decoration: none;
-                }
-
-                /* Responsive Design */
-                @media (max-width: 768px) {
-                    .contact-card {
-                        padding: 30px 25px;
-                    }
-
-                    .container {
-                        flex-direction: column;
-                        justify-content: center;
-                    }
-
-                    .image-container {
-                        padding-right: 0;
-                        margin-bottom: 20px; /* Add space between image and form */
-                        order: -1; /* Moves the image to the top on mobile */
-                    }
-                }
-
-                flipped-image {
-        transform: scaleX(-1); /* Flip the image horizontally */
-        display: block; /* Ensure the image behaves like a block-level element */
-        margin: 0 auto; /* Center the image */
-        transition: transform 0.3s ease-in-out; /* Smooth transition */
-        max-width: 100%; /* Ensure it doesn't overflow the container */
+      /* General Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
+
+      body {
+        font-family: 'Roboto', sans-serif;
+        background: url('https://i0.wp.com/picjumbo.com/wp-content/uploads/3d-polygon-abstract-background-free-photo.jpeg?w=2210&quality=70') no-repeat center center fixed;
+        background-size: cover;
+        height: 100vh; /* Full screen height */
+        display: flex;
+        flex-direction: column; /* Flex column to align content and footer */
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        overflow: hidden; /* Prevent page scrolling */
+        padding: 0 15px; /* For some space on small screens */
+      }
+
+      body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+        width: 100%;
+        position: relative;
+        max-width: 1200px;
+        gap: 0; /* Reduced the gap between form and image */
+        height: 90%; /* Set a fixed height for better alignment */
+      }
+
+      .image-container {
+        flex: 1;
+        height: 100%; /* Image should occupy the full height of the container */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 5px; /* Reduced padding to bring form closer to the image */
+        position: relative;
+      }
+
+      /* Transparent Image Wrapper */
+      .image-wrapper {
+        border-radius: 20px;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Contact Card */
+      .contact-card {
+  background: rgba(0, 0, 0, 0.7);  /* Black transparent background */
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  padding: 40px 35px;
+  width: 450px;
+  max-width: 90%;
+  height: 100%;  /* Form should occupy the full height of the container */
+  max-height: 600px;  /* Max height for the form */
+  position: relative;
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center form content vertically */
+  overflow: hidden;  /* Prevent scrolling */
+}
+
+      /* Close Button */
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: transparent;
+        color: #ff6ec7; /* Theme color */
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .close-btn:hover {
+        color: #ff4b8f; /* Darker shade on hover */
+      }
+
+      .close-btn:focus {
+        outline: none;
+      }
+
+      .contact-card h2 {
+        font-size: 30px;
+        text-align: center;
+        color: #fff;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      /* Form Inputs */
+      .form-group {
+        position: relative;
+        margin-bottom: 25px;
+      }
+
+      label {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        font-size: 16px;
+        color: #ddd;
+        pointer-events: none;
+        transition: 0.3s ease;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 18px 20px;
+        font-size: 16px;
+        border: 2px solid #555;
+        border-radius: 12px;
+        outline: none;
+        background-color: #333;
+        color: #fff;
+        transition: all 0.3s ease;
+      }
+
+      /* Theme Color (#ff6ec7) applied to input border and focus */
+      input:focus,
+      textarea:focus {
+        border-color: #ff6ec7;
+        background-color: #444;
+      }
+
+      input:focus + label,
+      textarea:focus + label,
+      input:not(:focus):valid + label,
+      textarea:not(:focus):valid + label {
+        top: -10px;
+        left: 20px;
+        font-size: 12px;
+        color: #ff6ec7;
+      }
+
+      textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+
+      .submit-btn {
+        background-color: #ff6ec7; /* Use theme color for the submit button */
+        color: #fff;
+        padding: 16px 25px;
+        font-size: 18px;
+        width: 100%;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        background-color: #ff4b8f; /* Darker shade of the theme color */
+        transform: translateY(-3px);
+      }
+
+      .submit-btn:active {
+        transform: translateY(1px);
+      }
+
+      .feedback {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #28a745;
+        text-align: center;
+      }
+
+      .feedback.error {
+        color: #dc3545;
+      }
+
+      /* Footer */
+      footer {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        text-align: center;
+        padding: 15px;
+        position: absolute;
+        bottom: 0;
+      }
+
+      footer a {
+        color: #ff6ec7; /* Use theme color for footer link */
+        text-decoration: none;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .contact-card {
+          padding: 30px 25px;
+        }
+
+        .container {
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .image-container {
+          padding-right: 0;
+          margin-bottom: 20px; /* Add space between image and form */
+          order: -1; /* Moves the image to the top on mobile */
+        }
+      }
+
+      /* Character Count Styling */
+      .char-count {
+  display: none; /* Hidden by default */
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+      /* Initially hide the error message */
+.error-message {
+  display: none; /* Hidden by default */
+  font-size: 14px;
+  font-weight: bold;
+  color: red;
+  margin-top: 5px;
+}
+
+      /* Green color for valid message range */
+      .valid-message {
+        color: green;
+      }
+
+      /* Red color for error message */
+      .error-message {
+        color: red;
+      }
+
     </style>
   </head>
   <body>
@@ -293,6 +316,14 @@
             ></textarea>
             <label for="message">Your Message</label>
           </div>
+          <!-- Character Count -->
+          <div id="charCount" class="char-count">Characters left: 100</div>
+
+          <!-- Error Message -->
+         <div id="errorMessage" class="error-message" style="display: none;">
+          Message must be between 100 and 5000 characters.
+        </div>
+        </div>
           <button type="submit" class="submit-btn">Send Message</button>
         </form>
         <div class="feedback" id="feedback"></div>
@@ -376,6 +407,57 @@
       function closeForm() {
           window.location.href = "index.html"; // Navigate to index.html
       }
+
+      const messageInput = document.getElementById('message');
+const charCount = document.getElementById('charCount');
+const errorMessage = document.getElementById('errorMessage');
+
+// Initially hide the character count and error message
+charCount.style.display = 'none';
+errorMessage.style.display = 'none';
+
+// Function to update character count and validate the input
+function updateCharacterCount() {
+  const messageLength = messageInput.value.length;
+
+  // Update character count
+  const charactersLeft = 100 - messageLength;
+  charCount.textContent = `Characters left: ${charactersLeft}`;
+
+  // Validation message and color
+  if (messageLength < 100) {
+    // Show error message and highlight in red
+    charCount.classList.remove('valid-message');
+    charCount.classList.add('error-message');
+    errorMessage.style.display = 'block'; // Show error message
+  } else if (messageLength >= 100 && messageLength <= 5000) {
+    // Show valid message and highlight in green
+    charCount.classList.remove('error-message');
+    charCount.classList.add('valid-message');
+    errorMessage.style.display = 'none'; // Hide error message
+  } else if (messageLength > 5000) {
+    // Show error message for more than 5000 characters
+    charCount.classList.remove('valid-message');
+    charCount.classList.add('error-message');
+    errorMessage.style.display = 'block'; // Show error message
+  }
+}
+
+// Event listener for message input
+messageInput.addEventListener('input', updateCharacterCount);
+
+// Show character count when the user focuses on the textarea
+messageInput.addEventListener('focus', () => {
+  charCount.style.display = 'block'; // Show character count
+  errorMessage.style.display = 'none'; // Hide error message on focus
+});
+
+// Hide character count when the user blurs out of the textarea
+messageInput.addEventListener('blur', () => {
+  charCount.style.display = 'none'; // Hide character count when blurred
+});
+
+
     </script>
   </body>
 </html>
