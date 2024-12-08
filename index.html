@@ -562,7 +562,7 @@
     </div>
 
     <!-- Inquiry Button -->
-    <div class="inquiry-button" onclick="window.location.href='query.html';">
+    <div class="inquiry-button" onclick="window.location.href='inquery.html';">
       <i class="fas fa-question-circle"></i>
     </div>
 
@@ -632,10 +632,12 @@
           });
 
           // Success
-          document.getElementById('successMessage').textContent = 'Registration successful!';
+          const successMessage = document.getElementById('successMessage');
+          successMessage.textContent = 'Registration successful!';
+          successMessage.style.display = 'block'; // Show success message
           setTimeout(() => {
             document.querySelector('.flip-card-wrapper').classList.add('flip'); // Flip the card to show login form
-          }, 1500); // Flip the card after a short delay to allow the user to see the success message
+          }, 1500); // Flip after a short delay
 
         } catch (error) {
           document.getElementById('errorMessage').textContent = error.message;
@@ -669,10 +671,13 @@
           const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
           // Step 2: Redirect to the About page after successful login
-          window.location.href = 'popular.html'; // This will redirect to the about page after successful login
+          window.location.href = 'about.html'; // This will redirect to the about page after successful login
 
         } catch (error) {
+          // If login fails, show an alert and flip to the sign-up page
           alert(error.message); // Handle login errors
+          // Flip the card back to the sign-up page only on login failure
+          document.querySelector('.flip-card-wrapper').classList.add('flip'); // Flip back to sign-up form on failure
         }
       });
 
@@ -687,6 +692,8 @@
         document.getElementById('username').value = '';
         document.getElementById('Email').value = '';
         document.getElementById('Pass').value = '';
+        const successMessage = document.getElementById('successMessage');
+        successMessage.style.display = 'none'; // Hide the success message after reset
       }
 
       // Inquiry button animation function
