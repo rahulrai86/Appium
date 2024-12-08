@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Subscription Plans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+        }
+
+        .subscription-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .subscription-cards {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            perspective: 1500px; /* Gives the 3D effect */
+        }
+
+        .card {
+            width: 300px;
+            height: 400px;
+            perspective: 1000px;
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease-in-out;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+        }
+
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        /* Front side styling */
+        .card-front {
+            background: linear-gradient(135deg, #ff6ec7, #ff4179);
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            flex-direction: column;
+            transform: translateZ(50px);
+        }
+
+        .card-front h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-front p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .card-back {
+            background-color: #fff;
+            color: #ff4179;
+            transform: rotateY(180deg);
+            flex-direction: column;
+            justify-content: flex-end;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-back .subscribe-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #ff6ec7;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .card-back .subscribe-btn:hover {
+            background-color: #ff4179;
+        }
+
+        .card-front img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 50px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="subscription-container">
+        <h1>Choose Your Plan</h1>
+        <div class="subscription-cards">
+            <!-- Basic Plan Card -->
+            <div class="card" id="plan-basic">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://image.shutterstock.com/image-vector/basic-plan-icon-symbol-simple-flat-260nw-1492010484.jpg" alt="Basic Plan">
+                        <h2>Basic Plan</h2>
+                        <p>$19.99/month</p>
+                        <p>1 User</p>
+                    </div>
+                    <div class="card-back">
+                        <button class="subscribe-btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Standard Plan Card -->
+            <div class="card" id="plan-standard">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://image.shutterstock.com/image-vector/standard-plan-icon-symbol-flat-260nw-1492010531.jpg" alt="Standard Plan">
+                        <h2>Standard Plan</h2>
+                        <p>$29.99/month</p>
+                        <p>5 Users</p>
+                    </div>
+                    <div class="card-back">
+                        <button class="subscribe-btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Plan Card -->
+            <div class="card" id="plan-premium">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://image.shutterstock.com/image-vector/premium-plan-icon-symbol-flat-260nw-1492010621.jpg" alt="Premium Plan">
+                        <h2>Premium Plan</h2>
+                        <p>$49.99/month</p>
+                        <p>Unlimited Users</p>
+                    </div>
+                    <div class="card-back">
+                        <button class="subscribe-btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Placeholder JS code for interactivity
+        const subscribeBtns = document.querySelectorAll('.subscribe-btn');
+
+        subscribeBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                alert('Thank you for subscribing!');
+            });
+        });
+    </script>
+
+</body>
+</html>
