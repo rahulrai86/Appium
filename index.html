@@ -577,7 +577,6 @@
       </p>
     </footer>
 
-    <!-- Firebase SDK and JavaScript Code -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
       import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
@@ -638,7 +637,6 @@
             document.querySelector('.flip-card-wrapper').classList.add('flip'); // Flip the card to show login form
           }, 1500); // Flip the card after a short delay to allow the user to see the success message
 
-
         } catch (error) {
           document.getElementById('errorMessage').textContent = error.message;
           document.getElementById('errorMessage').style.display = 'block';
@@ -667,8 +665,12 @@
         }
 
         try {
-          await signInWithEmailAndPassword(auth, email, password);
-          window.location.href = 'about.html'; // Redirect after successful login
+          // Step 1: Sign in with Firebase Authentication
+          const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+          // Step 2: Redirect to the About page after successful login
+          window.location.href = 'about.html'; // This will redirect to the about page after successful login
+
         } catch (error) {
           alert(error.message); // Handle login errors
         }
@@ -687,34 +689,32 @@
         document.getElementById('Pass').value = '';
       }
 
-      //inquery button animation function
-      // Function to trigger wiggle animation and show message
-        // Function to trigger wiggle, shake animation, and show message
-        function triggerAnimations() {
-            const button = document.querySelector('.inquiry-button');
-            const message = document.getElementById('inquiryMessage');
+      // Inquiry button animation function
+      function triggerAnimations() {
+        const button = document.querySelector('.inquiry-button');
+        const message = document.getElementById('inquiryMessage');
 
-            // Trigger the wiggle animation on the button
-            button.classList.add('wiggle');
-            button.classList.add('shake'); // Add shake effect
+        // Trigger the wiggle and shake animations
+        button.classList.add('wiggle');
+        button.classList.add('shake');
 
-            // Show the inquiry message
-            message.style.display = 'block';
+        // Show the inquiry message
+        message.style.display = 'block';
 
-            // Remove the shake and wiggle classes after animation completes
-            setTimeout(() => {
-                button.classList.remove('wiggle');
-                button.classList.remove('shake');
-            }, 600); // Duration of the animation (600ms)
+        // Remove the shake and wiggle classes after animation completes
+        setTimeout(() => {
+          button.classList.remove('wiggle');
+          button.classList.remove('shake');
+        }, 600); // Duration of the animation (600ms)
 
-            // Hide the message after 3 seconds
-            setTimeout(() => {
-                message.style.display = 'none';
-            }, 3000); // Message disappears after 3 seconds
-        }
+        // Hide the message after 3 seconds
+        setTimeout(() => {
+          message.style.display = 'none';
+        }, 3000); // Message disappears after 3 seconds
+      }
 
-        // Trigger the animations every 8 seconds
-        setInterval(triggerAnimations, 8000); // Trigger every 8 seconds
+      // Trigger the animations every 8 seconds
+      setInterval(triggerAnimations, 8000); // Trigger every 8 seconds
     </script>
   </body>
 </html>
